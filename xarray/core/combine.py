@@ -647,6 +647,7 @@ def _combine_single_variable_hypercube(
 
     # Check the overall coordinates are monotonically increasing
     for dim in concat_dims:
+        concatenated = concatenated.drop_duplicates(dim)
         indexes = concatenated.indexes.get(dim)
         if not (indexes.is_monotonic_increasing or indexes.is_monotonic_decreasing):
             raise ValueError(
